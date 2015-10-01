@@ -2,6 +2,7 @@
 """Setup xgboost package."""
 from __future__ import absolute_import
 import sys
+import os
 from setuptools import setup, find_packages
 import subprocess
 sys.path.insert(0, '.')
@@ -10,7 +11,7 @@ import os
 #build on the fly if install in pip
 #otherwise, use build.sh in the parent directory
 
-if 'pip' in __file__:
+if 'pip' in os.environ.get('_'):
     if not os.name == 'nt': #if not windows
         build_sh = subprocess.Popen(['sh', 'xgboost/build-python.sh'])
         build_sh.wait()
